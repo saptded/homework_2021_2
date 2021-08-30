@@ -44,4 +44,11 @@ QUnit.module('Тестируем функцию plain', function () {
 	QUnit.test('Работает с пустыми слотами из массива', function (assert) {
 		assert.deepEqual(plain([1, , 3, , 4, [, 6,]]), [1, 3, 4, 6]);
 	});
+
+	QUnit.test('Работает с невалидными данными', function (assert) {
+		assert.throws(() => plain(42), 'number');
+		assert.throws(() => plain("wrong argument"), 'string');
+		assert.throws(() => plain(true), 'boolean');
+		assert.throws(() => plain(undefined), 'undefined');
+	});
 });
