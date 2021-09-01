@@ -7,10 +7,12 @@
  * @returns {array} - массив элементов "поднятых" из всех подмассивов
  */
 
+
+
 const plain = array => {
     if (!Array.isArray(array)) {
         throw new TypeError('Invalid input');
     }
 
-    return array.flat(Infinity);
+    return array.reduce((resultArray, currentElement) => resultArray.concat(Array.isArray(currentElement) ? plain(currentElement) : currentElement), []);
 }
